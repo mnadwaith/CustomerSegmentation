@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Segmentation</title>
+    <style>
+        body {
+            background-image: url("https://images.datacamp.com/image/upload/v1648487930/shutterstock_1624376548_b831bdf4c1.jpg");
+            color: black;
+        }
+        .login {
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>Customer Segmentation</h1>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}" method="post">
+            <label for="Id">ID:</label>
+            <input type="number" placeholder="ID" required="required">
+
+            <label for="Sex">Sex:</label>
+            <select id="Sex" name="Sex">
+                <option value="" disabled selected hidden>Select your sex</option>
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+            </select>
+
+            <label for="MaritalStatus">Marital status:</label>
+            <select id="MaritalStatus" name="MaritalStatus">
+                <option value="" disabled selected hidden>Select your Marital Statue</option>
+                <option value="0">Single</option>
+                <option value="1">Married</option>
+            </select>
+
+            <label for="Age">Age:</label>
+            <input type="number" min="20" max="80" name="Age" placeholder="Age" required="required">
+            
+            <label for="Education">Education:</label>
+            <input type="number" min="0" max="3" name="Education" placeholder="Education" required="required">
+            
+            <label for="Income">Income:</label>
+            <input type="number" min="5000" name="Income" placeholder="Income" required="required">
+            
+            <label for="Occupation">Occupation:</label>
+            <select id="Occupation" name="Occupation">
+                <option value="" disabled selected hidden>Select your Occupation</option>
+                <option value="0">Not Working</option>
+                <option value="1">Working</option>
+                <option value="2">Business</option>
+            </select>
+            
+            <label for="SettlementSize">Settlement size:</label>
+            <select id="SettlementSize" name="SettlementSize">
+                <option value="" disabled selected hidden>Select your Settlement Size</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+                <option value="2">2</option>
+            </select>
+            <button type="submit">Predict</button>
+        </form>
+        {{ prediction_text }}
+        <br><br>
+        <img src="data:image/png;base64,{{url_3}}" alt="Submit Form" height="180" width="233" onerror="this.style.display='none'">
+        <img src="data:image/png;base64,{{url_1}}" alt="Submit Form" height="180" width="233" onerror="this.style.display='none'">
+        <img src="data:image/png;base64,{{url_4}}" alt="Submit Form" height="180" width="233" onerror="this.style.display='none'">
+        <br><br>
+        <img src="data:image/png;base64,{{url_2}}" alt="Submit Form" height="150" width="711" onerror="this.style.display='none'">
+    </div>
+</body>
+</html>
